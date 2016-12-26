@@ -1,21 +1,21 @@
 #include "queue.h"
 
 // adds a new item to the queue containing the content
-uint8_t q_enqueue(queue_t * queue, void * content) {
-  queue_node_t * n = calloc(1, sizeof(queue_node_t));
+uint8_t q_enqueue(struct queue * queue_p, void * content) {
+  struct queue_node * n = calloc(1, sizeof(struct queue_node));
 
   if (n == NULL) 
     return EMEMORY;
 
   n->content = content;
 
-  if (queue->head == NULL) {
-    queue->head = queue->tail = n;
+  if (queue_p->head == NULL) {
+    queue_p->head = queue_p->tail = n;
   } else {
-    queue->tail = (queue->tail->next = n);
+    queue_p->tail = (queue_p->tail->next = n);
   }
 
-  queue->q_size++;
+  queue_p->q_size++;
 
   return SUCCESS;
 }
@@ -23,11 +23,11 @@ uint8_t q_enqueue(queue_t * queue, void * content) {
 // remove the next time of the queue and returns it     
 // the node returned is not freed (obviously), so it must be freed
 // by the user
-queue_node_t * q_dequeue(queue_t * queue) {
-  if (queue->head != NULL) {
-    queue_node_t * ret = queue->head;
-    queue->head = queue->head->next;
-    queue->q_size--;
+struct queue_node * q_dequeue(struct queue * queue_p) {
+  if (queue_p->head != NULL) {
+    struct queue_node * ret = queue_p->head;
+    queue_p->head = queue_p->head->next;
+    queue_p->q_size--;
     return ret;
   }
 
@@ -35,25 +35,25 @@ queue_node_t * q_dequeue(queue_t * queue) {
 }
 
 // get the element at the front of the queue without removing it 
-queue_node_t * q_peek(queue_t * queue) {
-  return queue->head ? queue->head : NULL;
+struct queue_node * q_peek(struct queue * queue_p) {
+  return queue_p->head ? queue_p->head : NULL;
 }
 
 // checks if the queue is empty
-bool q_empty(queue_t * queue) {
-  return queue->head == NULL;
+bool q_empty(struct queue * queue_p) {
+  return queue_p->head == NULL;
 }
 
 // returns the current size of the queu
-uint32_t q_get_size(queue_t * queue) {
-  return queue->q_size;
+uint32_t q_get_size(struct queue * queue_p) {
+  return queue_p->q_size;
 }
 
 // frees the queue - attention the content of each node is not free'd
 // user is responsible to free that memory
-void q_free(queue_t * queue, bool free_content) {
-  while(queue->head != NULL) {
-    queue_node_t * p = q_dequeue(queue);
+void q_free(struct queue * queue_p, bool free_content) {
+  while(queue_p->head != NULL) {
+    struct queue_node * p = q_dequeue(queue_p);
 
     if (free_content)
       free(p->content);
@@ -64,8 +64,8 @@ void q_free(queue_t * queue, bool free_content) {
 
 // tries to free the content of every queue node - can be used at will
 // if the content is supposed (and able) to be freed
-void q_free_content(queue_t * queue) {
-  queue_node_t * p = queue->head;
+void q_free_content(struct queue * queue_p) {
+  struct queue_node * p = queue_p->head;
   while(p != NULL) {
     free(p->content);
     p = p->next;
