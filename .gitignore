@@ -1,1 +1,5 @@
+# ignore all the objects
 *.o
+
+# ignore all the sample files
+*_sample
