@@ -25,7 +25,7 @@ enum heap_type_t { MIN_HEAP, MAX_HEAP };
    be able to compare to 2 heap_nodes. The function must return -1, 0 or 1 if arg1 is 
    lesser, equal or greater than arg2. */
 struct heap {
-  bool (*cmp_func)(const void *, const void *);
+  int8_t (*cmp_func)(const void *, const void *);
   uint32_t heap_size;
   struct heap_node * root;
   struct heap_node * tail;
@@ -34,7 +34,7 @@ struct heap {
 
 /* creates the heap and sets the comparison function - it should be the only way 
    to initialize the heap */
-extern struct heap * h_init(bool (*cmp_func)(const void *, const void *), enum heap_type_t type);
+extern struct heap * h_init(int8_t (*cmp_func)(const void *, const void *), enum heap_type_t type);
 
 /* insert content into the given heap */
 extern uint8_t h_insert(struct heap * heap, void * content);
