@@ -13,10 +13,8 @@ content_t * create_content(uint32_t val) {
 }
 
 int main(int argc, char ** argv) {
-  queue_t q1;
-  queue_t q2;
-
-  q2.head = NULL;
+  struct queue q1;
+  struct queue q2;
 
   for(int i = 0; i < 15; i++) {
     q_enqueue(&q1, create_content(i));
