@@ -41,7 +41,7 @@ extern uint8_t h_insert(struct heap * heap, void * content);
 
 /* removes the nex value of the heap (min if it is a MIN_HEAP, max if it is a MAX_HEAP), 
    the heap_node is not freed, it should be freed by the user */
-extern struct heap_node * h_remove(const struct heap * heap);
+extern struct heap_node * h_remove(struct heap * heap);
 
 /* returns the min of the heap */
 extern struct heap_node * h_find(const struct heap * heap); 

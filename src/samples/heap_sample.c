@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "../heap/heap.h"
 
 typedef struct content {
   uint32_t val;
@@ -34,7 +34,17 @@ int main(int argc, char ** argv) {
     h_insert(h, create_content(i));
   }
 
-  print_h(h->root);
+    print_h(h->root);
+  while(1) {
+    struct heap_node * p = h_remove(h);
+    if (p == NULL) 
+      break;
+
+    printf("got: %d\n", *(int *)p->content);
+    print_h(h->root);
+  }
+
+
 
   return 0;
 }

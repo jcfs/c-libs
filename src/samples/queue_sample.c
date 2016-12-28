@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "queue.h"
+#include "../queue/queue.h"
 
 typedef struct content {
   uint32_t val;

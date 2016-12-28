@@ -1,11 +1,5 @@
-samples: queue_sample.o queue.o
-	gcc -o queue_sample queue_sample.o queue.o
-
-queue.o: queue.c
+all: queue.c queue.h
 	gcc -c queue.c -ansi -pedantic -Wall
 
-queue_sample.o: queue_sample.c
-	gcc -c queue_sample.c
-
 clean:
-	@rm -rf *.o queue_sample
+	@rm -rf *.o
