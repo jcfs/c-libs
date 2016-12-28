@@ -1,5 +1,6 @@
-# ignore all the objects
+# ignore all the objects and libs
 *.o
+*.a
 
 # ignore all the sample files
 *_sample
