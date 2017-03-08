@@ -33,7 +33,7 @@ uint8_t h_insert(struct heap * heap, void * content) {
     return SUCCESS;
   }
 
-  // we update the heap tail
+  /* we update the heap tail */
   update_heap_tail(heap);
 
   if (heap->tail->left == NULL) {
@@ -65,13 +65,13 @@ struct heap_node * h_remove(struct heap * heap) {
     return ret_val;
   }
 
-  // remove the p node from the bottom 
+  /* remove the p node from the bottom  */
   if (p->parent->left == p) 
     p->parent->left = NULL;
   else 
     p->parent->right = NULL;
 
-  // assign it to root
+  /* assign it to root */
   p->left = ret_val->left;
   p->right = ret_val->right;
   
