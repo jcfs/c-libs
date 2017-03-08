@@ -80,7 +80,7 @@ void l_free(struct list * list_p, bool free_content) {
 
 /* tries to free the content of every list node - can be used at will */
 /* if the content is supposed (and able) to be freed */
-void q_free_content(struct list * list_p) {
+void l_free_content(struct list * list_p) {
   struct list_node * p = list_p->head;
   while(p != NULL) {
     free(p->content);
